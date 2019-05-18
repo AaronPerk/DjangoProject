@@ -1,0 +1,19 @@
+{% extends 'memes/layout.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <h3 class="center-align green lighten-4">Recent Memes</h3>
+    {% for meme_url in meme_urls %}
+        <div class="card">
+            <div class="card-content">
+                <div class="container">
+                    <img src="{{meme_url}}">
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
