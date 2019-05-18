@@ -1,6 +1,7 @@
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate
 from models import Memes
 from .forms import MemeForm
 import re
@@ -12,7 +13,9 @@ def index(request):
         'meme_urls': []
     }
 
-    memes = Memes.objects.all()[:10]
+    memes = Memes.objects.all()
+    memes.reverse()
+    memes = memes[:10]
     for meme in memes:
         context['meme_urls'].append(get_api_url(meme))
 

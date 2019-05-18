@@ -47,19 +47,39 @@
 <body>
     <nav>
         <div class="nav-wrapper green lighten-6">
-            <a class="brand-logo" >SweetMemeMaker</p></a>
+            <a class="brand-logo">SweetMemeMaker</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+                {% if user.is_authenticated %}
+                    <li>
+                        <a>Hi,
+                            {% if user.first_name %}
+                                {{ user.first_name }}
+                            {% else %}
+                                {{user.username}}
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li><a href="/accounts/logout">Logout</a></li>
+                {% else %}
+                    <li><a href="/accounts/login">User Login</a></li>
+                {% endif %}
+
+                {% if user.is_superuser %}
+                    <li><a href="/admin">Admin</a></li>
+                {% endif %}
+
                 <li><a href="/">Recent Memes</a></li>
                 <li><a href="/memes/make_memes">Make Memes</a></li>
-                <li><a href="/admin">Admin Login</a></li>
             </ul>
         </div>
     </nav>
-
-                <ul id="mobile-demo" class="sidenav">
-                <li><a href="/admin">Admin Login</a></li>
-            </ul>
+    <ul id="mobile-demo" class="sidenav">
+        <li><a href="/admin">Admin</a></li>
+        <li><a href="/">Recent Memes</a></li>
+        <li><a href="/memes/make_memes">Make Memes</a></li>
+        <li><a href="/login">User Login</a></li>
+    </ul>
 
     <div class="col s12">
         {% block content %}

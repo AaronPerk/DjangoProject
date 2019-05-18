@@ -1,0 +1,14 @@
+{% extends 'memes/layout.html' %}
+
+{% block content %}
+
+<h3 class="center-align green lighten-4">Login</h3>
+<div class="container pad-from-nav-and-header">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+    </form>
+</div>
+
+{% endblock %}
