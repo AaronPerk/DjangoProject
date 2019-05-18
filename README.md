@@ -1,7 +1,7 @@
 # DjangoProject
 Meme generator built using Django
 
-#Dependencies
+# Dependencies
 Package                Version    
 ---------------------- -----------
 certifi                2019.3.9   
@@ -19,7 +19,7 @@ six                    1.12.0
 urllib3                1.25.2     
 wheel                  0.33.4     
 
-#Getting Started
+# Getting Started
 To get started, install the dependencies in your environment and set up the following environment variables (keep in mind the project is designed to use a MySql db):
 
 SECRET_KEY='YOUR_SECRET_KEY' (Generate a new key at https://www.miniwebtool.com/django-secret-key-generator)
