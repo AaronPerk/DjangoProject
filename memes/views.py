@@ -5,7 +5,6 @@ from models import Memes
 from .forms import MemeForm
 import re
 
-# Create your views here.
 
 def index(request):
 
@@ -19,7 +18,8 @@ def index(request):
 
     return render(request, 'memes/index.html', context)
 
-def makeMemes(request):
+
+def make_memes(request):
 
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -62,15 +62,16 @@ def get_api_url(meme):
 
 
 def fix_caption(caption):
-    d = {' ': '_'
-        , '_': '__'
-        , '-': '--'
-        , '?': '~q'
-        , '%': '~p'
-        , '#': '~h'
-        , '/': '~s'
-        , '"': r"''"
-         }
+    d = {
+        ' ': '_',
+        '_': '__',
+        '-': '--',
+        '?': '~q',
+        '%': '~p',
+        '#': '~h',
+        '/': '~s',
+        '"': r"''"
+    }
 
     pattern = '|'.join(re.escape(k) for k in d)
-    return (re.sub(pattern, lambda m: d.get(m.group(0).upper()), caption, flags=re.IGNORECASE))
+    return re.sub(pattern, lambda m: d.get(m.group(0).upper()), caption, flags=re.IGNORECASE)
