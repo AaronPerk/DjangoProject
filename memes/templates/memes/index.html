@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<h3 class="center-align green lighten-4 margin-from-nav">Recent Memes</h3>
+<h3 class="center-align green lighten-4">Recent Memes</h3>
 <div class="container pad-from-nav-and-header">
 {% for meme_url in meme_urls %}
     <div class="card">
         <div class="card-content">
-            <div class="container">
+            <div class="container center-align auto-width">
                 <img src="{{meme_url}}">
             </div>
         </div>
