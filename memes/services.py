@@ -1,4 +1,5 @@
 import requests
+import random
 
 def get_meme_options():
     url = 'https://memegen.link/api/templates/'
@@ -16,7 +17,7 @@ def get_meme_options():
   
 def randomMemeQuote(quote,meme):
     #Pass an array of quotes and an array of memes
-    return,random.choice(quote),random.choice(meme)
+    return random.choice(quote),random.choice(meme)
 
 
 def getTrumpQuotes():

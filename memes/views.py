@@ -13,10 +13,9 @@ def index(request):
         'meme_urls': []
     }
 
-    memes = Memes.objects.all()
+    memes = list(Memes.objects.all())
     memes.reverse()
-    memes = memes[:10]
-    for meme in memes:
+    for meme in memes[:10]:
         context['meme_urls'].append(get_api_url(meme))
 
     return render(request, 'memes/index.html', context)
