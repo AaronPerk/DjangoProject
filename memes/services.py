@@ -13,16 +13,20 @@ def get_meme_options():
 
     return options
 
+  
+def randomMemeQuote(quote,meme):
+    #Pass an array of quotes and an array of memes
+    return,random.choice(quote),random.choice(meme)
+
 
 def getTrumpQuotes():
     
     trumpQuotes = []
-#Generate 20 random Trump Quotes
+    #Generate 20 random Trump Quotes
     for i in range(20):
         
         url = 'https://api.tronalddump.io/random/quote'
         r = requests.get(url).json()['value']
         trumpQuotes.append(r)
-
-
+        
     return trumpQuotes
