@@ -1,16 +1,48 @@
 {% extends 'memes/layout.html' %}
 
 {% block content %}
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, null);
+    $( document ).ready(function() {
+        var sel = $("#id_meme_name")
+
+        M.FormSelect.init(sel, null);
+
+        function updateEditor() {
+
+            var memeName = sel.val()
+
+            var c1 = $("#id_top_caption").val()
+            var c2 = $("#id_bottom_caption").val()
+
+            if(!c1){
+                c1 = '_'
+            }
+            if(!c2){
+                c2 = '_'
+            }
+
+            $("#preview-img").attr("src", `https://memegen.link/${memeName}/${c1}/${c2}.jpg`)
+        }
+
+        sel.on("change", updateEditor)
+        $('input').blur(updateEditor)
     });
 </script>
 
 <h3 class="center-align green lighten-4">Make Memes, Dude</h3>
-<div class="container pad-from-nav-and-header">
+<div class="container center-align pad-from-nav-and-header preview">
+    <div class="card preview" >
+        <h5 class="center-align preview-header">Preview</h5>
+        <img id="preview-img"
+             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS56giu36UAHcowcu_IT3qd-rvBSGJMn4Mj8Zugd1v2ecjBGWGx"
+             height="90%"
+             width="90%"
+        >
+    </div>
+</div>
+
+
+<div class="container">
     <form action="/memes/make_memes/" method="post">
         {% csrf_token %}
         {{ form }}
