@@ -16,13 +16,12 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
 
-        memes = list(Memes.objects.all())
-        memes.reverse()
+        memes = Memes.objects.order_by('-id')[:10]
 
         context = super(IndexView, self).get_context_data(**kwargs)
         context['meme_urls'] = []
 
-        for meme in memes[:10]:
+        for meme in memes:
             context['meme_urls'].append(get_api_url(meme))
 
         return context
@@ -81,7 +80,7 @@ class UserRegistrationView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class ViewProfileView(TemplateView):
     template_name = 'memes/view_profile.html'
-    
+
 
 @method_decorator(login_required, name='dispatch')
 class EditProfileView(TemplateView):
