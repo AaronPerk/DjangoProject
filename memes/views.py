@@ -14,18 +14,18 @@ import re
 class IndexView(TemplateView):
     template_name = 'memes/index.html'
 
-    def get(self, request, *args, **kwargs):
-        context = {
-            'meme_urls': []
-        }
+    def get_context_data(self, **kwargs):
 
         memes = list(Memes.objects.all())
         memes.reverse()
+
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['meme_urls'] = []
+
         for meme in memes[:10]:
             context['meme_urls'].append(get_api_url(meme))
 
-        return render(request, self.template_name, context)
-
+        return context
 
 class MakeMemesView(TemplateView):
     template_name = 'memes/makeMemes.html'
@@ -81,9 +81,7 @@ class UserRegistrationView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class ViewProfileView(TemplateView):
     template_name = 'memes/view_profile.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+    
 
 @method_decorator(login_required, name='dispatch')
 class EditProfileView(TemplateView):
