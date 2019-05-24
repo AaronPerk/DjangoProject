@@ -2,7 +2,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.contrib.auth.models import User
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from models import Memes
 from .forms import MemeForm, EditProfileForm, UserRegistrationForm
 import re
@@ -95,6 +98,27 @@ class EditProfileView(TemplateView):
 
             form.save()
             return HttpResponseRedirect('/memes/profile/view')
+
+
+@method_decorator(login_required, name='dispatch')
+class ChangePasswordView(TemplateView):
+    template_name = 'memes/change_password.html'
+
+    def get(self, request, *args, **kwargs):
+
+        form = PasswordChangeForm(user=request.user)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/memes/profile/changePassword')
 
 
 def get_api_url(meme):

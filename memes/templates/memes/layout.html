@@ -37,6 +37,11 @@
         z-index: 9999;
     }
 
+    .dropdown-content{
+       width: max-content !important;
+       height:auto !important;
+    }
+
     nav{
         position: fixed;
         z-index: 9999;
@@ -59,14 +64,13 @@
 
 <body>
 
-
     <nav class="nav-wrapper green lighten-6" role="navigation">
     <div class="nav-wrapper">
         <a href="/" class="brand-logo">SweetMemeMaker</a>
         <ul class="right hide-on-med-and-down">
             {% if user.is_authenticated %}
                 <li>
-                    <a>Hi,
+                    <a href="/memes/profile/view">Hi,
                         {% if user.first_name %}
                             {{ user.first_name }}
                         {% else %}
@@ -77,6 +81,7 @@
                 <li><a href="/accounts/logout">Logout</a></li>
             {% else %}
                 <li><a href="/accounts/login">Login</a></li>
+                <li><a href="/memes/profile/register">Register</a></li>
             {% endif %}
             {% if user.is_superuser %}
                 <li><a href="/admin">Admin</a></li>
@@ -87,7 +92,7 @@
         <ul id="nav-mobile" class="sidenav">
             {% if user.is_authenticated %}
                 <li>
-                    <a>Hi,
+                    <a href="/memes/profile/view">Hi,
                         {% if user.first_name %}
                             {{ user.first_name }}
                         {% else %}
@@ -98,6 +103,7 @@
                 <li><a href="/accounts/logout">Logout</a></li>
             {% else %}
                 <li><a href="/accounts/login">Login</a></li>
+                <li><a href="/memes/profile/register">Register</a></li>
             {% endif %}
             {% if user.is_superuser %}
                 <li><a href="/admin">Admin</a></li>
@@ -114,6 +120,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
     $(document).ready(function(){
+        $('.dropdown-trigger').dropdown({
+            hover: false,
+            constrainWidth: false,
+            autoTrigger: true
+        });
+
         $('.sidenav').sidenav({
             menuWidth: 200,
             closeOnClick: true

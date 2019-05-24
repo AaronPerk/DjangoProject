@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49faa9a-a8e9-44b8-b126-43f04a49e684" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/memes/templates/memes/edit_profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memes/templates/memes/user_registration.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memes/templates/memes/view_profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memes/templates/memes/change_password.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/memes/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/memes/templates/memes/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/memes/templates/memes/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/memes/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/memes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/views.py" afterDir="false" />
@@ -22,17 +19,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memes/templates/memes/makeMemes.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="45" selection-start-line="45" selection-end-line="49" selection-end-column="11" />
+            <state relative-caret-position="105">
+              <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/memes/templates/memes/change_password.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/memes/templates/memes/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="105" column="33" lean-forward="true" selection-start-line="105" selection-start-column="33" selection-end-line="105" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memes/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="72" column="42" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
+            <state relative-caret-position="346">
+              <caret line="120" column="70" selection-start-line="120" selection-start-column="70" selection-end-line="120" selection-end-column="70" />
               <folding>
                 <element signature="e#1#36#0" expanded="true" />
               </folding>
@@ -41,22 +56,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/memes/forms.py">
+        <entry file="file://$PROJECT_DIR$/memes/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="31" column="61" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+            <state relative-caret-position="240">
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
-                <element signature="e#0#24#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/memes/templates/memes/user_registration.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -90,16 +96,17 @@
         <option value="$PROJECT_DIR$/memes/services.py" />
         <option value="$PROJECT_DIR$/memes/templates/memes/makeMemes.html" />
         <option value="$PROJECT_DIR$/memes/templates/memes/navBarList.html" />
-        <option value="$PROJECT_DIR$/memes/templates/memes/layout.html" />
         <option value="$PROJECT_DIR$/memes/templates/memes/profile.html" />
         <option value="$PROJECT_DIR$/memes/templates/memes/settings.html" />
         <option value="$PROJECT_DIR$/memes/templates/memes/edit_profile.html" />
         <option value="$PROJECT_DIR$/memes/templates/memes/view_profile.html" />
         <option value="$PROJECT_DIR$/memes/models.py" />
-        <option value="$PROJECT_DIR$/memes/urls.py" />
         <option value="$PROJECT_DIR$/memes/templates/memes/user_registration.html" />
         <option value="$PROJECT_DIR$/memes/forms.py" />
         <option value="$PROJECT_DIR$/memes/views.py" />
+        <option value="$PROJECT_DIR$/memes/urls.py" />
+        <option value="$PROJECT_DIR$/memes/templates/memes/change_password.html" />
+        <option value="$PROJECT_DIR$/memes/templates/memes/layout.html" />
       </list>
     </option>
   </component>
@@ -310,13 +317,6 @@
     <entry file="file://$PROJECT_DIR$/memes/migrations/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/templates/memes/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="99" column="46" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memes/templates/memes/view_profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -341,30 +341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/templates/memes/makeMemes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="45" selection-start-line="45" selection-end-line="49" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/memes/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/memes/templates/memes/user_registration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memes/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
@@ -375,13 +351,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/memes/templates/memes/user_registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/templates/memes/makeMemes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/memes/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="72" column="42" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
+        <state relative-caret-position="346">
+          <caret line="120" column="70" selection-start-line="120" selection-start-column="70" selection-end-line="120" selection-end-column="70" />
           <folding>
             <element signature="e#1#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/templates/memes/change_password.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/templates/memes/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="105" column="33" lean-forward="true" selection-start-line="105" selection-start-column="33" selection-end-line="105" selection-end-column="33" />
         </state>
       </provider>
     </entry>
