@@ -2,8 +2,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
+from django.contrib.auth.models import User
 from models import Memes
-from .forms import MemeForm
+from .forms import MemeForm, EditProfileForm, UserRegistrationForm
 import re
 
 
@@ -53,6 +54,47 @@ class MakeMemesView(TemplateView):
                 bottom_caption=form.cleaned_data['bottom_caption']
             )
             return HttpResponseRedirect('/')
+
+
+class UserRegistrationView(TemplateView):
+    template_name = 'memes/user_registration.html'
+
+    def get(self, request, *args, **kwargs):
+
+        form = UserRegistrationForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+
+        form = UserRegistrationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+
+
+class ViewProfileView(TemplateView):
+    template_name = 'memes/view_profile.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class EditProfileView(TemplateView):
+    template_name = 'memes/edit_profile.html'
+
+    def get(self, request, *args, **kwargs):
+
+        form = EditProfileForm(instance=request.user)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+
+            form.save()
+            return HttpResponseRedirect('/memes/profile/view')
 
 
 def get_api_url(meme):
