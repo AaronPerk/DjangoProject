@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -64,6 +64,9 @@ class UserRegistrationView(TemplateView):
 
     def get(self, request, *args, **kwargs):
 
+        if request.user.is_authenticated:
+            return HttpResponseRedirect('/')
+
         form = UserRegistrationForm()
         return render(request, self.template_name, {'form': form})
 
@@ -75,14 +78,14 @@ class UserRegistrationView(TemplateView):
             form.save()
             return HttpResponseRedirect('/')
 
-
+@method_decorator(login_required, name='dispatch')
 class ViewProfileView(TemplateView):
     template_name = 'memes/view_profile.html'
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
-
+@method_decorator(login_required, name='dispatch')
 class EditProfileView(TemplateView):
     template_name = 'memes/edit_profile.html'
 
