@@ -118,7 +118,7 @@ class ChangePasswordView(TemplateView):
             update_session_auth_hash(request, form.user)
             return HttpResponseRedirect('/')
         else:
-            return HttpResponseRedirect('/memes/profile/changePassword')
+            return HttpResponseRedirect('/memes/password')
 
 
 def get_api_url(meme):
