@@ -1,7 +1,7 @@
 from django.conf.urls import url
-from . import views
+from memes.views import IndexView, MakeMemesView
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^make_memes/', views.make_memes, name='make_memes'),
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^make_memes/', MakeMemesView.as_view(), name='make_memes'),
 ]

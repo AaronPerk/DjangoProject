@@ -1,32 +1,40 @@
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate
+from django.views.generic import TemplateView
 from models import Memes
 from .forms import MemeForm
 import re
 
 
-def index(request):
+class IndexView(TemplateView):
+    template_name = 'memes/index.html'
 
-    context = {
-        'meme_urls': []
-    }
+    def get(self, request, *args, **kwargs):
+        context = {
+            'meme_urls': []
+        }
 
-    memes = list(Memes.objects.all())
-    memes.reverse()
-    for meme in memes[:10]:
-        context['meme_urls'].append(get_api_url(meme))
+        memes = list(Memes.objects.all())
+        memes.reverse()
+        for meme in memes[:10]:
+            context['meme_urls'].append(get_api_url(meme))
 
-    return render(request, 'memes/index.html', context)
+        return render(request, self.template_name, context)
 
 
-def make_memes(request):
+class MakeMemesView(TemplateView):
+    template_name = 'memes/makeMemes.html'
 
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
+    def get(self, request, *args, **kwargs):
+
+        form = MemeForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+
         form = MemeForm(request.POST)
-        # check whether it's valid:
+
         if form.is_valid():
 
             if form.cleaned_data['top_caption']:
@@ -45,10 +53,6 @@ def make_memes(request):
                 bottom_caption=form.cleaned_data['bottom_caption']
             )
             return HttpResponseRedirect('/')
-    else:
-        form = MemeForm()
-
-    return render(request, 'memes/makeMemes.html', {'form': form})
 
 
 def get_api_url(meme):

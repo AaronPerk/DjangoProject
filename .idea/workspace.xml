@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49faa9a-a8e9-44b8-b126-43f04a49e684" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/memes/templates/memes/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/memes/templates/memes/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/memes/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/memes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,10 +15,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/memes/templates/memes/makeMemes.html">
+        <entry file="file://$PROJECT_DIR$/memes/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-97">
-              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            <state relative-caret-position="60">
+              <caret line="4" column="50" lean-forward="true" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -24,20 +29,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memes/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="43" />
-              <folding>
-                <element signature="e#1#36#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/memes/templates/memes/layout.html">
+        <entry file="file://$PROJECT_DIR$/memes/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
+            <state relative-caret-position="150">
+              <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DjangoProject/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding>
+                <element signature="e#1#42#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -63,18 +80,18 @@
         <option value="$PROJECT_DIR$/memes/components/forms.py" />
         <option value="$PROJECT_DIR$/memes/forms.py" />
         <option value="$PROJECT_DIR$/DjangoProject/web_config.ini" />
-        <option value="$PROJECT_DIR$/memes/models.py" />
-        <option value="$PROJECT_DIR$/memes/urls.py" />
         <option value="$PROJECT_DIR$/memes/templates/memes/index.html" />
         <option value="$PROJECT_DIR$/set_env_vars.py" />
         <option value="$PROJECT_DIR$/memes/templates/memes/login.html" />
         <option value="$PROJECT_DIR$/DjangoProject/urls.py" />
         <option value="$PROJECT_DIR$/memes/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/DjangoProject/settings.py" />
-        <option value="$PROJECT_DIR$/memes/views.py" />
         <option value="$PROJECT_DIR$/memes/services.py" />
         <option value="$PROJECT_DIR$/memes/templates/memes/makeMemes.html" />
         <option value="$PROJECT_DIR$/memes/templates/memes/layout.html" />
+        <option value="$PROJECT_DIR$/memes/urls.py" />
+        <option value="$PROJECT_DIR$/memes/views.py" />
+        <option value="$PROJECT_DIR$/memes/models.py" />
       </list>
     </option>
   </component>
@@ -208,13 +225,6 @@
     <entry file="file://$PROJECT_DIR$/posts/templates/posts/index.html" />
     <entry file="file://$PROJECT_DIR$/posts/views.py" />
     <entry file="file://$PROJECT_DIR$/DjangoProject/web_config.ini" />
-    <entry file="file://$PROJECT_DIR$/memes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memes/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -232,26 +242,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/set_env_vars.py" />
-    <entry file="file://$PROJECT_DIR$/memes/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DjangoProject/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="42" lean-forward="true" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DjangoProject/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1995">
@@ -279,13 +269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/templates/memes/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memes/services.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -296,27 +279,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/views.py">
+    <entry file="file://$PROJECT_DIR$/memes/templates/memes/makeMemes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="43" />
-          <folding>
-            <element signature="e#1#36#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/templates/memes/makeMemes.html">
+    <entry file="file://$PROJECT_DIR$/memes/templates/memes/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-97">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        <state relative-caret-position="180">
+          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/memes/templates/memes/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
+        <state relative-caret-position="651">
           <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DjangoProject/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <element signature="e#1#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="50" lean-forward="true" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
