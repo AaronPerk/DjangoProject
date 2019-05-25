@@ -13,7 +13,30 @@
         </div>
     </div>
 {% endfor %}
+
+{% for meme in meme_urls %}
+    {# Each "meme" is a meme model object. #}
+    {{ meme.full_name|upper }}
+{% endfor %}
+
+<div class="pagination center-align">
+    <br>
+    <span class="step-links">
+        {% if meme_urls.has_previous %}
+            <a href="?page={{ meme_urls.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ meme_urls.number }} of {{ meme_urls.paginator.num_pages }}.
+        </span>
+
+        {% if meme_urls.has_next %}
+            <a href="?page={{ meme_urls.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+    <br><br>
 </div>
 
-
 {% endblock %}
+

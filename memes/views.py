@@ -1,4 +1,5 @@
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
@@ -6,23 +7,37 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from models import Memes
+from .models import Memes
 from .forms import MemeForm, EditProfileForm, UserRegistrationForm
 import re
 
 
 class IndexView(TemplateView):
+
     template_name = 'memes/index.html'
 
     def get(self, request, *args, **kwargs):
-        context = {
-            'meme_urls': []
-        }
-
+        queryset_list = []
         memes = list(Memes.objects.all())
         memes.reverse()
-        for meme in memes[:10]:
-            context['meme_urls'].append(get_api_url(meme))
+        for meme in memes:
+            queryset_list.append(get_api_url(meme))
+
+        paginator = Paginator(queryset_list, 10)  # Show 5 memes per page
+
+        page = request.GET.get('page')
+
+        try:
+            queryset = paginator.page(page)
+        except PageNotAnInteger:
+            #If page is not an integer deliver first page
+            queryset = paginator.page(1)
+        except EmptyPage:
+            queryset = paginator(paginator.num_pages)
+
+        context = {
+                'meme_urls': queryset
+            }
 
         return render(request, self.template_name, context)
 
