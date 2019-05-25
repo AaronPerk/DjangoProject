@@ -1,13 +1,14 @@
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from models import Memes
-from .forms import MemeForm, EditProfileForm, UserRegistrationForm
+from django.forms import formset_factory
+from models import Memes, Comment
+from .forms import MemeForm, EditProfileForm, UserRegistrationForm, CommentForm
 import re
 
 
@@ -16,13 +17,14 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
 
-        memes = Memes.objects.order_by('-id')[:10]
-
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['meme_urls'] = []
+        context['memes'] = Memes.objects.order_by('-id')[:10]
 
-        for meme in memes:
-            context['meme_urls'].append(meme.get_api_url())
+        #CommentFormSet = formset_factory(CommentForm, extra=10)
+        #context['formset'] = CommentFormSet()
+
+        comment_form = CommentForm()
+        context['form'] = comment_form
 
         return context
 
@@ -108,3 +110,15 @@ class ChangePasswordView(TemplateView):
             return HttpResponseRedirect('/')
         else:
             return HttpResponseRedirect('/memes/password')
+
+
+class CommentView(CreateView):
+    http_method_names = ['post']
+    form_class = CommentForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.cleaned_data['user'] = self.request.user
+        form.cleaned_data['meme'] = Memes.objects.get(pk=self.request.POST.get('meme_id', -1))
+        form.save()
+        return HttpResponseRedirect(self.success_url)

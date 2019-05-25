@@ -1,7 +1,9 @@
 import re
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
 
-# Create your models here.
+
 class Memes(models.Model):
     meme_name = models.CharField(max_length=64)
     top_caption = models.CharField(max_length=32)
@@ -36,3 +38,18 @@ class Memes(models.Model):
 
         pattern = '|'.join(re.escape(k) for k in d)
         return re.sub(pattern, lambda m: d.get(m.group(0).upper()), caption, flags=re.IGNORECASE)
+
+
+class Comment(models.Model):
+    content = models.CharField(max_length=128)
+    created_at = models.DateTimeField(default=timezone.now())
+    meme = models.ForeignKey(Memes)
+    user = models.ForeignKey(User)
+
+    class Meta:
+        ordering = ('-created_at',)
+
+
+class Like(models.Model):
+    meme = models.ForeignKey(Memes)
+    user = models.ForeignKey(User)

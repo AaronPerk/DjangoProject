@@ -5,21 +5,24 @@
 <h3 class="center-align green lighten-4">User Profile</h3>
 
 <div class="container pad-from-nav-and-header">
-    <h4>Username</h4>
-    <p>{{user.username}}</p>
+    <div class="card">
+        <div class="card-content">
+            <h4>Username</h4>
+            <p>{{user.username}}</p>
 
-    <h4>Email Address</h4>
-    <p>{{user.email}}</p>
+            <h4>Email Address</h4>
+            <p>{{user.email}}</p>
 
-    <h4>First Name</h4>
-    <p>{{user.first_name}}</p>
+            <h4>First Name</h4>
+            <p>{{user.first_name}}</p>
 
-    <h4>Last Name</h4>
-    <p>{{user.last_name}}</p>
-    <br>
+            <h4>Last Name</h4>
+            <p>{{user.last_name}}</p>
+            <br>
 
-    <a class="btn" href="/memes/profile/edit">Edit</a>
-
+            <a class="btn" href="/memes/profile/edit">Edit</a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

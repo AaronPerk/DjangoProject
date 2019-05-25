@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .services import get_meme_options
-from models import Memes
+from models import Memes, Comment
+
 
 class MemeForm(forms.Form):
 
@@ -30,6 +31,30 @@ class MemeForm(forms.Form):
             meme_name=self.cleaned_data['meme_name'],
             top_caption=self.cleaned_data['top_caption'],
             bottom_caption=self.cleaned_data['bottom_caption']
+        )
+
+
+class CommentForm(forms.ModelForm):
+
+    content = forms.CharField(
+        label='',
+        max_length=128,
+        widget=forms.TextInput(attrs={'placeholder': 'Comment...'})
+    )
+
+    def save(self, commit=True):
+        Comment.objects.create(
+            content=self.cleaned_data['content'],
+            meme=self.cleaned_data['meme'],
+            user=self.cleaned_data['user']
+        )
+
+    class Meta:
+        model = Comment
+        exclude = (
+            'user',
+            'meme',
+            'created_at'
         )
 
 

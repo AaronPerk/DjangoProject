@@ -4,16 +4,38 @@
 
 <h3 class="center-align green lighten-4">Recent Memes</h3>
 <div class="container pad-from-nav-and-header">
-{% for meme_url in meme_urls %}
+{% for meme in memes %}
     <div class="card">
         <div class="card-content">
             <div class="container center-align auto-width">
-                <img src="{{meme_url}}">
+                <img src="{{meme.get_api_url}}">
+            </div>
+            <div class="container margin-top-10">
+                <div class="row">
+                    <a class="col s1 disabled"><i class="material-icons">favorite_border</i></a>
+                    <br>
+                </div>
+                <div class="row">
+                    <ul class="collection">
+                        {% for comment in meme.comment_set.all %}
+
+                        <li class="collection-item">{{comment.content}}</li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="row">
+                    <form action="/memes/comment/" method="post">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input type="hidden" name="meme_id" value="{{meme.pk}}" />
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 {% endfor %}
 </div>
-
 
 {% endblock %}
