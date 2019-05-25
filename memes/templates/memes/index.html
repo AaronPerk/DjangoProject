@@ -36,6 +36,29 @@
         </div>
     </div>
 {% endfor %}
+
+{% for meme in memes %}
+    {# Each "meme" is a meme model object. #}
+    {{ meme.full_name|upper }}
+{% endfor %}
+
+<div class="pagination center-align">
+    <br>
+    <span class="step-links">
+        {% if memes.has_previous %}
+            <a href="?page={{ meme_urls.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ memes.number }} of {{ memes.paginator.num_pages }}.
+        </span>
+
+        {% if memes.has_next %}
+            <a href="?page={{ meme_urls.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+    <br><br>
 </div>
 
 {% endblock %}

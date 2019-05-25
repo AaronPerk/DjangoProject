@@ -1,4 +1,5 @@
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView, CreateView
@@ -6,27 +7,38 @@ from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.forms import formset_factory
-from models import Memes, Comment
+from .models import Memes, Comment
 from .forms import MemeForm, EditProfileForm, UserRegistrationForm, CommentForm
 import re
 
-
 class IndexView(TemplateView):
+
     template_name = 'memes/index.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
+        queryset_list = Memes.objects.all()
+
+        paginator = Paginator(queryset_list, 10)  # Show 10 memes per page
+
+        page = request.GET.get('page')
+
+        try:
+            queryset = paginator.page(page)
+        except PageNotAnInteger:
+            #If page is not an integer deliver first page
+            queryset = paginator.page(1)
+        except EmptyPage:
+            queryset = paginator(paginator.num_pages)
+            #Deliver last page
+
 
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['memes'] = Memes.objects.order_by('-id')[:10]
-
-        #CommentFormSet = formset_factory(CommentForm, extra=10)
-        #context['formset'] = CommentFormSet()
+        context['memes'] = queryset
 
         comment_form = CommentForm()
         context['form'] = comment_form
 
-        return context
+        return render(request, self.template_name, context)
 
 
 class MakeMemesView(TemplateView):
