@@ -46,7 +46,7 @@
     <br>
     <span class="step-links">
         {% if memes.has_previous %}
-            <a href="?page={{ meme_urls.previous_page_number }}">previous</a>
+            <a href="?page={{ memes.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -54,7 +54,7 @@
         </span>
 
         {% if memes.has_next %}
-            <a href="?page={{ meme_urls.next_page_number }}">next</a>
+            <a href="?page={{ memes.next_page_number }}">next</a>
         {% endif %}
     </span>
 </div>

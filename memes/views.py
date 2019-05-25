@@ -16,7 +16,7 @@ class IndexView(TemplateView):
     template_name = 'memes/index.html'
 
     def get(self, request, *args, **kwargs):
-        queryset_list = Memes.objects.all()
+        queryset_list = Memes.objects.all().order_by('-id')
 
         paginator = Paginator(queryset_list, 10)  # Show 10 memes per page
 
