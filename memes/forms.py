@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .services import get_meme_options
-from models import Memes
+from .models import Memes
 
 class MemeForm(forms.Form):
 

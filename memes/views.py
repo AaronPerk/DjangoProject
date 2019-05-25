@@ -7,24 +7,21 @@ from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Memes
 from .forms import MemeForm, EditProfileForm, UserRegistrationForm
-import re
-
+from .models import Memes
 
 class IndexView(TemplateView):
 
     template_name = 'memes/index.html'
 
-<<<<<<< HEAD
-    def get_context_data(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         queryset_list = []
         memes = list(Memes.objects.all())
         memes.reverse()
         for meme in memes:
-            queryset_list.append(get_api_url(meme))
+            queryset_list.append(Memes.get_api_url(meme))
 
-        paginator = Paginator(queryset_list, 10)  # Show 5 memes per page
+        paginator = Paginator(queryset_list, 10)  # Show 10 memes per page
 
         page = request.GET.get('page')
 
@@ -35,12 +32,13 @@ class IndexView(TemplateView):
             queryset = paginator.page(1)
         except EmptyPage:
             queryset = paginator(paginator.num_pages)
+            #Deliver last page
 
         context = {
                 'meme_urls': queryset
             }
 
-        return context
+        return render(request, self.template_name, context)
 
 
 class MakeMemesView(TemplateView):
