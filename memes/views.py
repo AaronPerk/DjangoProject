@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -16,7 +16,8 @@ class IndexView(TemplateView):
 
     template_name = 'memes/index.html'
 
-    def get(self, request, *args, **kwargs):
+<<<<<<< HEAD
+    def get_context_data(self, request, *args, **kwargs):
         queryset_list = []
         memes = list(Memes.objects.all())
         memes.reverse()
@@ -39,7 +40,7 @@ class IndexView(TemplateView):
                 'meme_urls': queryset
             }
 
-        return render(request, self.template_name, context)
+        return context
 
 
 class MakeMemesView(TemplateView):
@@ -56,21 +57,7 @@ class MakeMemesView(TemplateView):
 
         if form.is_valid():
 
-            if form.cleaned_data['top_caption']:
-                form.cleaned_data['top_caption'] = fix_caption(form.cleaned_data['top_caption'])
-            else:
-                form.cleaned_data['top_caption'] = '_'
-
-            if form.cleaned_data['bottom_caption']:
-                form.cleaned_data['bottom_caption'] = fix_caption(form.cleaned_data['bottom_caption'])
-            else:
-                form.cleaned_data['bottom_caption'] = '_'
-
-            Memes.objects.create(
-                meme_name=form.cleaned_data['meme_name'],
-                top_caption=form.cleaned_data['top_caption'],
-                bottom_caption=form.cleaned_data['bottom_caption']
-            )
+            form.save()
             return HttpResponseRedirect('/')
 
 
@@ -78,6 +65,9 @@ class UserRegistrationView(TemplateView):
     template_name = 'memes/user_registration.html'
 
     def get(self, request, *args, **kwargs):
+
+        if request.user.is_authenticated:
+            return HttpResponseRedirect('/')
 
         form = UserRegistrationForm()
         return render(request, self.template_name, {'form': form})
@@ -87,17 +77,17 @@ class UserRegistrationView(TemplateView):
         form = UserRegistrationForm(request.POST)
 
         if form.is_valid():
+
             form.save()
             return HttpResponseRedirect('/')
 
 
+@method_decorator(login_required, name='dispatch')
 class ViewProfileView(TemplateView):
     template_name = 'memes/view_profile.html'
 
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
 
-
+@method_decorator(login_required, name='dispatch')
 class EditProfileView(TemplateView):
     template_name = 'memes/edit_profile.html'
 
@@ -134,31 +124,3 @@ class ChangePasswordView(TemplateView):
             return HttpResponseRedirect('/')
         else:
             return HttpResponseRedirect('/memes/password')
-
-
-def get_api_url(meme):
-    c1 = '_' if not meme.top_caption else meme.top_caption
-    c2 = '_' if not meme.bottom_caption else meme.bottom_caption
-    return (
-        'https://memegen.link/{}/{}/{}.jpg'.format(
-            meme.meme_name,
-            c1,
-            c2
-        )
-    )
-
-
-def fix_caption(caption):
-    d = {
-        ' ': '_',
-        '_': '__',
-        '-': '--',
-        '?': '~q',
-        '%': '~p',
-        '#': '~h',
-        '/': '~s',
-        '"': r"''"
-    }
-
-    pattern = '|'.join(re.escape(k) for k in d)
-    return re.sub(pattern, lambda m: d.get(m.group(0).upper()), caption, flags=re.IGNORECASE)
