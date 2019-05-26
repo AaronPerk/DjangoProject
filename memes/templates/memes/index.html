@@ -4,7 +4,7 @@
 
 <h3 class="center-align green lighten-4">Recent Memes</h3>
 <div class="container pad-from-nav-and-header">
-{% for meme in memes %}
+    {% for meme in memes %}
     <div class="card">
         <div class="card-content">
             <div class="container center-align auto-width">
@@ -19,7 +19,10 @@
                     <ul class="collection">
                         {% for comment in meme.comment_set.all %}
 
-                        <li class="collection-item">{{comment.content}}</li>
+                        <li class="collection-item">
+                            <h5 class="blue-text">{{comment.user.username}}</h5>
+                            <p class="margin-left-10">{{comment.content}}</p>
+                        </li>
 
                         {% endfor %}
                     </ul>
@@ -35,29 +38,29 @@
             </div>
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
 
-{% for meme in memes %}
-    {# Each "meme" is a meme model object. #}
-    {{ meme.full_name|upper }}
-{% endfor %}
+    {% for meme in memes %}
+        {# Each "meme" is a meme model object. #}
+        {{ meme.full_name|upper }}
+    {% endfor %}
 
-<div class="pagination center-align">
-    <br>
-    <span class="step-links">
-        {% if memes.has_previous %}
-            <a href="?page={{ memes.previous_page_number }}">previous</a>
-        {% endif %}
+    <div class="pagination center-align">
+        <br>
+        <span class="step-links">
+            {% if memes.has_previous %}
+                <a href="?page={{ memes.previous_page_number }}">previous</a>
+            {% endif %}
 
-        <span class="current">
-            Page {{ memes.number }} of {{ memes.paginator.num_pages }}.
+            <span class="current">
+                Page {{ memes.number }} of {{ memes.paginator.num_pages }}.
+            </span>
+
+            {% if memes.has_next %}
+                <a href="?page={{ memes.next_page_number }}">next</a>
+            {% endif %}
         </span>
-
-        {% if memes.has_next %}
-            <a href="?page={{ memes.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div>
+    </div>
     <br><br>
 </div>
 

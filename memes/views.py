@@ -2,13 +2,19 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, CreateView
-from django.contrib.auth import update_session_auth_hash, logout
+from django.views.generic import TemplateView, CreateView, UpdateView
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Memes, Comment
-from .forms import MemeForm, EditProfileForm, UserRegistrationForm, CommentForm
+from .models import Memes
+from .forms import (
+    MemeForm,
+    EditProfileForm,
+    UserRegistrationForm,
+    CommentForm
+)
 import re
 
 class IndexView(TemplateView):
@@ -41,22 +47,25 @@ class IndexView(TemplateView):
         return render(request, self.template_name, context)
 
 
-class MakeMemesView(TemplateView):
+class MakeMemesView(CreateView):
     template_name = 'memes/makeMemes.html'
+    success_url = '/'
+    form_class = MemeForm
 
-    def get(self, request, *args, **kwargs):
+    def form_valid(self, form):
+        if form.cleaned_data['top_caption']:
+            form.cleaned_data['top_caption'] = Memes.fix_caption(form.cleaned_data['top_caption'])
+        else:
+            form.cleaned_data['top_caption'] = '_'
 
-        form = MemeForm()
-        return render(request, self.template_name, {'form': form})
+        if form.cleaned_data['bottom_caption']:
+            form.cleaned_data['bottom_caption'] = Memes.fix_caption(form.cleaned_data['bottom_caption'])
+        else:
+            form.cleaned_data['bottom_caption'] = '_'
 
-    def post(self, request, *args, **kwargs):
+        form.save()
+        return HttpResponseRedirect(self.success_url)
 
-        form = MemeForm(request.POST)
-
-        if form.is_valid():
-
-            form.save()
-            return HttpResponseRedirect('/')
 
 
 class UserRegistrationView(TemplateView):
@@ -86,21 +95,16 @@ class ViewProfileView(TemplateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class EditProfileView(TemplateView):
+class EditProfileView(UpdateView):
     template_name = 'memes/edit_profile.html'
-
-    def get(self, request, *args, **kwargs):
-
-        form = EditProfileForm(instance=request.user)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-
-        form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-
-            form.save()
-            return HttpResponseRedirect('/memes/profile/view')
+    success_url = '/memes/profile/view'
+    model = User
+    fields = (
+        'username',
+        'first_name',
+        'last_name',
+        'email'
+    )
 
 
 @method_decorator(login_required, name='dispatch')
@@ -124,6 +128,7 @@ class ChangePasswordView(TemplateView):
             return HttpResponseRedirect('/memes/password')
 
 
+@method_decorator(login_required, name='dispatch')
 class CommentView(CreateView):
     http_method_names = ['post']
     form_class = CommentForm

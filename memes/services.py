@@ -31,3 +31,4 @@ def getTrumpQuotes():
         trumpQuotes.append(r)
         
     return trumpQuotes
+
