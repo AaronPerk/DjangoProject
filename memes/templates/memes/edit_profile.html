@@ -7,7 +7,7 @@
 <div class="container pad-from-nav-and-header">
     <div class="card">
         <div class="card-content">
-            <form action="/memes/profile/edit" method="post">
+            <form action="/memes/profile/edit/{{user.pk}}/" method="post">
                 {% csrf_token %}
                 {{ form }}
                 <input type="submit" class="btn" value="Update">
