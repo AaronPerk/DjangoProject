@@ -6,7 +6,9 @@ from memes.views import(
     EditProfileView,
     UserRegistrationView,
     ChangePasswordView,
-    CommentView
+    CommentView,
+    AddLikeView,
+    DeleteLikeView
 )
 
 urlpatterns = [
@@ -16,5 +18,7 @@ urlpatterns = [
     url(r'^profile/edit/(?P<pk>\d+)/$', EditProfileView.as_view(), name='edit_profile'),
     url(r'^profile/register/', UserRegistrationView.as_view(), name='user_registration'),
     url(r'^password/(?P<pk>\d+)/$', ChangePasswordView.as_view(), name='change_password'),
-    url(r'^comment/$', CommentView.as_view(), name='comment')
+    url(r'^comment/$', CommentView.as_view(), name='comment'),
+    url(r'^like/add/$', AddLikeView.as_view(), name='like_add'),
+    url(r'^like/delete/(?P<pk>\d+)/$', DeleteLikeView.as_view(), name='like_delete')
 ]

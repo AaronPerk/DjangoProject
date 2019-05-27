@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .services import get_meme_options
-from .models import Memes, Comment
+from .models import Memes, Comment, Like
 
 class MemeForm(forms.ModelForm):
 
@@ -42,6 +42,15 @@ class CommentForm(forms.ModelForm):
             'created_at'
         )
 
+
+class LikeForm(forms.ModelForm):
+
+    class Meta:
+        model = Like
+        exclude = (
+            'user',
+            'meme'
+        )
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True);

@@ -12,7 +12,26 @@
             </div>
             <div class="container margin-top-10">
                 <div class="row">
-                    <a class="col s1 disabled"><i class="material-icons">favorite_border</i></a>
+                    {% load meme_tags %}
+
+                    {% with meme|get_like_from_user_and_meme:user as like_pk %}
+                    {% if like_pk == None %}
+<!--                    <a class="col s1 disabled"><i class="material-icons">favorite</i></a>-->
+                    <form id="add-like" action="/memes/like/add/" method="post">
+                        {% csrf_token %}
+                        {{ like_form }}
+                        <input type="hidden" name="meme_id" value="{{meme.pk}}" />
+                    </form>
+                    <a href="javascript:$('#add-like').submit();"><i class="material-icons">favorite_border</i></a>{% else %}
+<!--                    <a class="col s1 disabled" href=""><i class="material-icons">favorite_border</i></a>-->
+                    <form id="delete-like" action="/memes/like/delete/{{like_pk}}/" method="post">
+                        {% csrf_token %}
+                        {{ like_form }}
+                        <input type="hidden" name="meme_id" value="{{meme.pk}}" />
+                    </form>
+                    <a href="javascript:$('#delete-like').submit();"><i class="material-icons">favorite</i></a>
+                    {% endif %}
+                    {% endwith %}
                     <br>
                 </div>
                 <div class="row">
@@ -30,7 +49,7 @@
                 <div class="row">
                     <form action="/memes/comment/" method="post">
                         {% csrf_token %}
-                        {{ form }}
+                        {{ comment_form }}
                         <input type="hidden" name="meme_id" value="{{meme.pk}}" />
                         <input type="submit" value="Submit">
                     </form>

@@ -2,16 +2,17 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Memes
+from .models import Memes, Like
 from .forms import (
     MemeForm,
     UserRegistrationForm,
-    CommentForm
+    CommentForm,
+    LikeForm
 )
 
 
@@ -37,7 +38,8 @@ class IndexView(ListView):
 
         context = super(IndexView, self).get_context_data(**kwargs)
         context['memes'] = memes
-        context['form'] = CommentForm()
+        context['comment_form'] = CommentForm()
+        context['like_form'] = LikeForm()
         return context
 
 
@@ -117,4 +119,28 @@ class CommentView(CreateView):
         form.cleaned_data['meme'] = Memes.objects.get(pk=self.request.POST.get('meme_id', -1))
         form.save()
         return HttpResponseRedirect(self.success_url)
+
+
+class AddLikeView(CreateView):
+    http_method_names = ['post']
+    model = Like
+    form_class = LikeForm
+    success_url = '/'
+    exclude = [
+        'meme',
+        'user'
+    ]
+
+    def form_valid(self, form):
+        Like.objects.create(
+            meme=Memes.objects.get(pk=self.request.POST.get('meme_id', -1)),
+            user=self.request.user
+        )
+        return HttpResponseRedirect(self.success_url)
+
+
+class DeleteLikeView(DeleteView):
+    http_method_names = ['post']
+    model = Like
+    success_url = '/'
 
