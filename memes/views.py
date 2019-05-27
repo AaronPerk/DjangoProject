@@ -121,6 +121,7 @@ class CommentView(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
+@method_decorator(login_required, name='dispatch')
 class AddLikeView(CreateView):
     http_method_names = ['post']
     model = Like
@@ -139,6 +140,7 @@ class AddLikeView(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
+@method_decorator(login_required, name='dispatch')
 class DeleteLikeView(DeleteView):
     http_method_names = ['post']
     model = Like
