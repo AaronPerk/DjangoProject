@@ -2,49 +2,43 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, CreateView, UpdateView
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Memes
 from .forms import (
     MemeForm,
-    EditProfileForm,
     UserRegistrationForm,
     CommentForm
 )
-import re
 
-class IndexView(TemplateView):
 
+class IndexView(ListView):
     template_name = 'memes/index.html'
+    model = Memes
+    queryset = Memes.objects.all().order_by('-id')
+    paginate_by = 10
+    context_object_name = "memes"
 
-    def get(self, request, *args, **kwargs):
-        queryset_list = Memes.objects.all().order_by('-id')
-
-        paginator = Paginator(queryset_list, 10)  # Show 10 memes per page
-
-        page = request.GET.get('page')
+    def get_context_data(self, **kwargs):
+        paginator = Paginator(self.queryset, self.paginate_by)
+        page = self.request.GET.get('page')
 
         try:
-            queryset = paginator.page(page)
+            memes = paginator.page(page)
         except PageNotAnInteger:
             #If page is not an integer deliver first page
-            queryset = paginator.page(1)
+            memes = paginator.page(1)
         except EmptyPage:
-            queryset = paginator(paginator.num_pages)
+            memes = paginator(paginator.num_pages)
             #Deliver last page
 
-
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['memes'] = queryset
-
-        comment_form = CommentForm()
-        context['form'] = comment_form
-
-        return render(request, self.template_name, context)
+        context['memes'] = memes
+        context['form'] = CommentForm()
+        return context
 
 
 class MakeMemesView(CreateView):
@@ -67,26 +61,21 @@ class MakeMemesView(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
-
-class UserRegistrationView(TemplateView):
+class UserRegistrationView(CreateView):
     template_name = 'memes/user_registration.html'
+    model = User
+    form_class = UserRegistrationForm
+    success_url = '/accounts/login'
 
-    def get(self, request, *args, **kwargs):
-
-        if request.user.is_authenticated:
+    def form_valid(self, form):
+        if self.request.user.is_authenticated:
             return HttpResponseRedirect('/')
 
-        form = UserRegistrationForm()
-        return render(request, self.template_name, {'form': form})
+        form.save()
+        return HttpResponseRedirect(self.success_url)
 
-    def post(self, request, *args, **kwargs):
-
-        form = UserRegistrationForm(request.POST)
-
-        if form.is_valid():
-
-            form.save()
-            return HttpResponseRedirect('/')
+    def form_invalid(self, form):
+        return HttpResponseRedirect('/memes/profile/register/')
 
 
 @method_decorator(login_required, name='dispatch')
@@ -108,24 +97,13 @@ class EditProfileView(UpdateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class ChangePasswordView(TemplateView):
+class ChangePasswordView(PasswordChangeView):
     template_name = 'memes/change_password.html'
+    success_url = '/'
+    model = User
 
-    def get(self, request, *args, **kwargs):
-
-        form = PasswordChangeForm(user=request.user)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-
-        form = PasswordChangeForm(data=request.POST, user=request.user)
-        if form.is_valid():
-
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return HttpResponseRedirect('/')
-        else:
-            return HttpResponseRedirect('/memes/password')
+    def form_invalid(self, form):
+        return HttpResponseRedirect('/memes/password/{}/'.format(form.user.pk))
 
 
 @method_decorator(login_required, name='dispatch')
@@ -139,3 +117,4 @@ class CommentView(CreateView):
         form.cleaned_data['meme'] = Memes.objects.get(pk=self.request.POST.get('meme_id', -1))
         form.save()
         return HttpResponseRedirect(self.success_url)
+

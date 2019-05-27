@@ -67,16 +67,3 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
 
         return user
-
-
-class EditProfileForm(UserChangeForm):
-
-    class Meta:
-        model = User
-        fields = (
-            'username',
-            'first_name',
-            'last_name',
-            'email',
-            'password'
-        )
