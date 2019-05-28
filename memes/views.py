@@ -69,12 +69,9 @@ class UserRegistrationView(CreateView):
     form_class = UserRegistrationForm
     success_url = '/accounts/login'
 
-    def form_valid(self, form):
-        if self.request.user.is_authenticated:
+    def get(self, request):
+        if request.user.is_authenticated:
             return HttpResponseRedirect('/')
-
-        form.save()
-        return HttpResponseRedirect(self.success_url)
 
     def form_invalid(self, form):
         return HttpResponseRedirect('/memes/profile/register/')

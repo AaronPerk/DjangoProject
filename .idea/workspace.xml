@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c49faa9a-a8e9-44b8-b126-43f04a49e684" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/memes/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/memes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/memes/templates/memes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/memes/templates/memes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/memes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/memes/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,23 +22,23 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="41" />
-          <entry key="py" value="134" />
+          <entry key="py" value="167" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="41" />
-          <entry key="Python" value="134" />
+          <entry key="Python" value="167" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="2" />
+          <entry key="py" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="2" />
+          <entry key="Python" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -50,20 +48,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memes/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="122" column="53" lean-forward="true" selection-start-line="122" selection-start-column="53" selection-end-line="122" selection-end-column="53" />
+            <state relative-caret-position="252">
+              <caret line="69" column="35" lean-forward="true" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
               <folding>
                 <element signature="e#1#73#0" expanded="true" />
+                <marker date="1559060582647" expanded="true" signature="2319:2412" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memes/templates/memes/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="31" column="69" selection-start-line="31" selection-start-column="69" selection-end-line="31" selection-end-column="69" />
+            <state relative-caret-position="323">
+              <caret line="22" column="86" lean-forward="true" selection-start-line="22" selection-start-column="86" selection-end-line="22" selection-end-column="86" />
             </state>
           </provider>
         </entry>
@@ -71,8 +70,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memes/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="39" column="97" lean-forward="true" selection-start-line="39" selection-start-column="97" selection-end-line="39" selection-end-column="97" />
+            <state relative-caret-position="527">
+              <caret line="34" column="22" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/memes/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="88" lean-forward="true" selection-start-line="17" selection-start-column="88" selection-end-line="17" selection-end-column="88" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,9 +127,9 @@
         <option value="$PROJECT_DIR$/memes/templatetags/meme_tags.py" />
         <option value="$PROJECT_DIR$/memes/urls.py" />
         <option value="$PROJECT_DIR$/memes/forms.py" />
-        <option value="$PROJECT_DIR$/memes/views.py" />
         <option value="$PROJECT_DIR$/memes/models.py" />
         <option value="$PROJECT_DIR$/memes/templates/memes/index.html" />
+        <option value="$PROJECT_DIR$/memes/views.py" />
       </list>
     </option>
   </component>
@@ -363,16 +374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memes/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -383,27 +384,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/views.py">
+    <entry file="file://$PROJECT_DIR$/memes/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="122" column="53" lean-forward="true" selection-start-line="122" selection-start-column="53" selection-end-line="122" selection-end-column="53" />
-          <folding>
-            <element signature="e#1#73#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="527">
+          <caret line="34" column="22" lean-forward="true" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/memes/models.py">
+    <entry file="file://$PROJECT_DIR$/memes/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="39" column="97" lean-forward="true" selection-start-line="39" selection-start-column="97" selection-end-line="39" selection-end-column="97" />
+        <state relative-caret-position="252">
+          <caret line="69" column="35" lean-forward="true" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+          <folding>
+            <element signature="e#1#73#0" expanded="true" />
+            <marker date="1559060582647" expanded="true" signature="2319:2412" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/memes/templates/memes/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" column="69" selection-start-line="31" selection-start-column="69" selection-end-line="31" selection-end-column="69" />
+        <state relative-caret-position="323">
+          <caret line="22" column="86" lean-forward="true" selection-start-line="22" selection-start-column="86" selection-end-line="22" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/memes/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="88" lean-forward="true" selection-start-line="17" selection-start-column="88" selection-end-line="17" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
