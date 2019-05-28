@@ -46,9 +46,6 @@ class Comment(models.Model):
     meme = models.ForeignKey(Memes)
     user = models.ForeignKey(User)
 
-    class Meta:
-        ordering = ('-created_at',)
-
 
 class Like(models.Model):
     meme = models.ForeignKey(Memes)

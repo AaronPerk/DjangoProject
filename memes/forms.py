@@ -27,13 +27,6 @@ class CommentForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'placeholder': 'Comment...'})
     )
 
-    def save(self, commit=True):
-        Comment.objects.create(
-            content=self.cleaned_data['content'],
-            meme=self.cleaned_data['meme'],
-            user=self.cleaned_data['user']
-        )
-
     class Meta:
         model = Comment
         exclude = (
@@ -51,6 +44,7 @@ class LikeForm(forms.ModelForm):
             'user',
             'meme'
         )
+
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True);

@@ -7,7 +7,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Memes, Like
+from .models import Memes, Comment, Like
 from .forms import (
     MemeForm,
     UserRegistrationForm,
@@ -115,9 +115,11 @@ class CommentView(CreateView):
     success_url = '/'
 
     def form_valid(self, form):
-        form.cleaned_data['user'] = self.request.user
-        form.cleaned_data['meme'] = Memes.objects.get(pk=self.request.POST.get('meme_id', -1))
-        form.save()
+        Comment.objects.create(
+            content=form.cleaned_data['content'],
+            meme=Memes.objects.get(pk=self.request.POST.get('meme_id', -1)),
+            user=self.request.user
+        )
         return HttpResponseRedirect(self.success_url)
 
 
