@@ -67,7 +67,7 @@ class UserRegistrationView(CreateView):
     template_name = 'memes/user_registration.html'
     model = User
     form_class = UserRegistrationForm
-    success_url = '/accounts/login'
+    success_url = '/accounts/login/'
 
     def get(self, request):
         if request.user.is_authenticated:
@@ -87,7 +87,7 @@ class ViewProfileView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class EditProfileView(UpdateView):
     template_name = 'memes/edit_profile.html'
-    success_url = '/memes/profile/view'
+    success_url = '/memes/profile/view/'
     model = User
     fields = (
         'username',
