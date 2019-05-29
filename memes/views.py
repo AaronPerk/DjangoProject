@@ -72,6 +72,8 @@ class UserRegistrationView(CreateView):
     def get(self, request):
         if request.user.is_authenticated:
             return HttpResponseRedirect('/')
+        else:
+            return super(UserRegistrationView, self).get(request)
 
     def form_invalid(self, form):
         return HttpResponseRedirect('/memes/profile/register/')
