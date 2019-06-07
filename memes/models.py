@@ -4,6 +4,11 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    bio = models.CharField(max_length=128, default=r"I haven't added a bio yet because I have my head up my ass.")
+
+
 class Memes(models.Model):
     meme_name = models.CharField(max_length=64)
     top_caption = models.CharField(max_length=32)

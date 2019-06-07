@@ -8,7 +8,4 @@ class MemesConfig(AppConfig):
     name = 'memes'
 
     def ready(self):
-        from .signals import (
-            request_started_callback,
-            request_finished_callback
-        )
+        from memes import signals
