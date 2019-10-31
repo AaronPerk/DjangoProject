@@ -1,6 +1,6 @@
 certifi==2019.3.9
 chardet==3.0.4
-Django==1.11.20
+Django==1.11.23
 idna==2.8
 mysqlclient==1.4.2
 pytz==2019.1
